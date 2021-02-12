@@ -1,0 +1,60 @@
+        static void BubbleSort(List<int> minlista)
+        {
+            
+            for(int i =0; i < minlista.Count; i++)
+            {
+                for(int j =0; j < minlista.Count - 1 - i; j++)
+                {
+                    if (minlista[j] > minlista[j + 1])
+                    {
+                        int temp = minlista[j];
+                        minlista[j] = minlista[j + 1];
+                        minlista[j + 1] = temp;
+                    }
+
+                }
+            }
+        }
+
+        static void SelectionSort(List<int> minlista)
+        {
+            for(int i = 0; i < minlista.Count-1; i++)
+            {
+                int smallest = i;
+                for(int j = i + 1; j < minlista.Count; j++)
+                {
+                    if (minlista[j] < minlista[smallest])
+                        smallest = j;
+                }
+                int temp = minlista[smallest];
+                minlista[smallest] = minlista[i];
+                minlista[i] = temp;
+
+            }
+        }
+
+
+        static void Main(string[] args)
+        {
+            var tallista = new List<int>();
+            var nummerlista = new List<int>();
+            Random slump = new Random();
+
+            for(int i=0; i < 100000; i++)
+            {
+                tallista.Add(slump.Next(10000));
+                nummerlista.Add(slump.Next(10000));
+            }
+
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+            BubbleSort(tallista);
+            stopWatch.Stop();
+            foreach (int i in tallista)
+                Console.Write(i + " ");
+
+            SelectionSort(nummerlista);
+            foreach (int i in nummerlista)
+                Console.Write(i + " ");
+
+            Console.Write(stopWatch.ElapsedMilliseconds);
